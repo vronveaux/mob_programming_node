@@ -38,5 +38,16 @@ describe('User API', () => {
           .expect(404, done)
       })
     })
+
+    describe('when inserting bob again', () => {
+      it('returns 400', (done) => {
+        const errorMessage = {"message":"User badly created!","errors":["Robert already exists!"]}
+        api
+          .post('/api/user/')
+          .send(bob)
+          .expect(400, errorMessage)
+          .end(done)
+      })
+    })
   })
 })

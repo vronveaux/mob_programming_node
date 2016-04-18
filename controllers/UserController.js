@@ -11,9 +11,15 @@ var UserController = {
 
 				res.status(201).json({ message: 'User created!',name: req.body.name, email: req.body.email });
 			},
-			function(err){
+			function(err) {
 				//next(new Error("User badly created!"))
-				res.status(400).json({ message: 'User badly created!', errors: err.errors.map(function(el, index) {return index + ': ' + el.message}) });
+				const errors = err.errors.map(function(el) {
+					if (el.message === "email must be unique") {
+						return req.body.name + " already exists!";
+					}
+					return el.message;
+				});
+				res.status(400).json({ message: 'User badly created!', errors });
 			}
 
 		)

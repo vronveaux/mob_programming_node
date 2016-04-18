@@ -23,9 +23,9 @@ var sequelize = new Sequelize('mysql://root:@localhost:3306/cpa');
 			toJSON: function () {
 				var values = this.get();
 
-				values.id = undefined;
-				values.createdAt = undefined;
-				values.updatedAt = undefined;
+				delete values.id;
+				delete values.createdAt;
+				delete values.updatedAt ;
 				return values;
 			}
 	    },
