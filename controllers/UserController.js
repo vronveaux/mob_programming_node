@@ -1,5 +1,5 @@
-var User = require('../models/user.model')
-
+var tmp = require('../models/user.model')
+var User = tmp.User;
 
 var UserController = {
     create: function(req, res, next) {
@@ -51,6 +51,21 @@ var UserController = {
             res.status(404).json({'error':'user not found'});
           }
 				})
+    },
+    getList: function(req, res) {
+      User.findAll().then(
+        function(users)
+        {
+          if (users)
+          {
+
+              res.status(200).json(users)
+
+          }
+          else {
+            res.status(404).json({'error':'users not found'});
+          }
+        })
     }
 }
 
