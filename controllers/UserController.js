@@ -23,9 +23,6 @@ var UserController = {
 			}
 
 		)
-
-
-
     },
     get: function(req, res) {
 		User.findOne({ where: {name: req.params.name} })
@@ -39,20 +36,22 @@ var UserController = {
 				res.status(404).json(error);
 			});
 	},
-    delete: function(req, res) {
+    delete: function(req, res)
+    {
 			User.findOne({ where: {name: req.params.name} })
-				.then(function(user) {
-					if (user) {
-						return user.destroy();
+				.then(function(user)
+        {
+					if (user)
+          {
+						return user.destroy().then((destroyed) => {
+    					res.status(204).json()
+    				});
 					}
-				})
-				.then((destroyed) => {
-					res.status(204).json()
+          else {
+            res.status(404).json({'error':'user not found'});
+          }
 				})
     }
-
-
-
 }
 
 
