@@ -36,4 +36,5 @@ var sequelize = new Sequelize('cpa', '', '', {
 	});
 
 
-module.exports = User
+exports.User = User;
+exports.dblink = sequelize;
