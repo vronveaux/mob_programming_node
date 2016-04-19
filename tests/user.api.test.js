@@ -5,9 +5,9 @@ var app = require('../app')
 
 describe('User API', () => {
   const api = supertest(app)
+  const name = 'Robert';
+  const bob = { name, email:'robert@api.gouv.fr'}
   describe('when Bob is in the Db', () => {
-    const name = 'Robert';
-    const bob = { name, email:'robert@api.gouv.fr'}
 
     beforeEach((done) => {
       api
@@ -21,6 +21,7 @@ describe('User API', () => {
         .delete('/api/user/'+ name)
         .expect(204, done)
     })
+
 
 
     describe('when getting bob', () => {
@@ -50,4 +51,12 @@ describe('User API', () => {
       })
     })
   })
+  afterEach((done) =>  {
+      const errorMessage = {"error": "user not found"};
+      api
+        .delete('/api/user/'+ name)
+        .expect(404, errorMessage)
+        .end(done);
+  })
+
 })
