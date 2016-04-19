@@ -1,11 +1,25 @@
 {
-    "name": "node-api",
-    "main": "server.js",
-    "dependencies": {
-	"express": "*",
-	"body-parser": "*",
-	"sequelize": "*",
-	"mysql":"*",
-	"sqlite3":"*"
-    }
+  "name": "node-api",
+  "main": "server.js",
+  "scripts": {
+    "pretest": "npm install",
+    "init" : "node bin/db.js",
+    "test": "istanbul cover --print details _mocha -- -R spec tests/** --recursive",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "body-parser": "*",
+    "express": "*",
+    "mysql": "*",
+    "sequelize": "*",
+    "sqlite3": "*"
+  },
+  "devDependencies": {
+    "chai": "3.5.0",
+    "istanbul": "0.4.3",
+    "mocha": "2.4.5",
+    "nock": "8.0.0",
+    "sinon": "1.17.3",
+    "supertest": "1.2.0"
+  }
 }
