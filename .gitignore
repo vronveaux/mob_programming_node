@@ -2,6 +2,10 @@
 logs
 *.log
 npm-debug.log*
+.idea
+
+# database
+db/cpa.sqlite3
 
 # Runtime data
 pids

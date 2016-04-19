@@ -1,6 +1,9 @@
 var Sequelize  = require('sequelize');
 
-var sequelize = new Sequelize('mysql://root:@localhost:3306/cpa');
+var sequelize = new Sequelize('cpa', '', '', {
+  dialect: 'sqlite',
+  storage: 'db/cpa.sqlite3'
+});
 
 	var User = sequelize.define('users',
 	{
